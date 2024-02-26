@@ -5,6 +5,14 @@ Grid search for the best combinations of autoencoder hyperparameters
     - param_grid: list containing a python dictionary for every grid of parameters to be expored
 """
 
+import numpy as np
+from sklearn.model_selection import train_test_split
+import tensorflow as tf
+from tensorflow.keras.models import Model
+from tensorflow.keras.layers import Dense, Input
+from tensorflow.keras import regularizers
+from scikeras.wrappers import KerasRegressor
+
 x_train, x_test, y_train, y_test = train_test_split(phf_good_norm, php_good, test_size=0.3, random_state=42)
 
 def build_autoencoder(neurons_in=None,reg_par=None,lr=None):
