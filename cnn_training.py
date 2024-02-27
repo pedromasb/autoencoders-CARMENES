@@ -1,5 +1,6 @@
 """
-Training of the CNN regression models. This file shows the training for the effective temperature. The process for the other stellar parmeters is the same, including the corresponding hyperparameters for each parameter in the build_cnn() function (Table 1 in the paper)
+Training of the CNN regression models. This file shows the training for the effective temperature. 
+The process for the other stellar parmeters is the same, including the corresponding hyperparameters for each parameter in the build_cnn() function (Table 1 in the paper)
     - phf_good_norm: numpy array containing the normalised synthetic spectra
     - teff_ph: numpy array containing the effective temperatures for the synthetic spectra
 """
