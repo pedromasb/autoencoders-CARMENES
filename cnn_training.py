@@ -50,7 +50,7 @@ for f in np.sort(os.listdir(path_acs)):
         ac = f.replace('.h5','')
         
         encoded_ph = np.load(f"{path_encodings}encoded_ph_{ac.replace('_','')}.npy") 
-        encoded_carm = np.load(f'{path_encodings}CARMENES/encoded_carm_{ac}.npy') 
+        encoded_carm = np.load(f'{path_encodings}encoded_carm_{ac}.npy') 
 
         for tr_index, test_index in split.split(encoded_ph,teff_ph):
 
