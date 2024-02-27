@@ -1,6 +1,8 @@
 """
 Training of the autoencoders for the best hyperparameters combinations
-    - params_final_newlr: list with a dictionary for each combination of hyperparameters.
+    - phf_good_norm: numpy array containing the normalised synthetic spectra
+    - php_good: numpy array containing the synthetic spectra parameters
+    - params_final: list with a dictionary for each combination of hyperparameters.
 """
 
 import numpy as np
@@ -36,11 +38,11 @@ def contractive_loss(y_pred, y_true):
 x_train, x_test, y_train, y_test = train_test_split(phf_good_norm, php_good, test_size=0.3, random_state=42)
 
 # Training of the autoencoders
-for i in range(len(params_final_newlr)):
+for i in range(len(params_final)):
     
-    lr_model = params_final_newlr[i]['lr']
-    neurons_in_model = params_final_newlr[i]['neurons_in']
-    reg_par_model = params_final_newlr[i]['reg_par']
+    lr_model = params_final[i]['lr']
+    neurons_in_model = params_final[i]['neurons_in']
+    reg_par_model = params_final[i]['reg_par']
 
     input_l = Input(shape=(3501,),name='input_l')
 
@@ -69,9 +71,7 @@ for i in range(len(params_final_newlr)):
                     epochs=120,
                     batch_size=128,
                     verbose=0)
-            
-    ac.save(f'models/ac_{i}.h5')
-    
+                    
     predicted_ph_test = ac.predict(x_test)
     
     mse = mean_squared_error(predicted_ph_test,x_test)
@@ -79,6 +79,10 @@ for i in range(len(params_final_newlr)):
     f = f.replace('.h5','')
     
     with open('ac_mse_ph.txt','a') as file_mse:
-        file_mse.write(f'Autoencoder {f} mse in TEST SET: {mse} \n')    
+        file_mse.write(f'Autoencoder {f} mse in TEST SET: {mse} \n')  
+    
+    encoded_ph = encoder.predict(phf_good_norm)
+    np.save(f'encoded_ph_ac{i}.npy', encoded_ph)
+    ac.save(f'ac_{i}.h5')
         
     print(f'Autoencoder: {i} finished')
