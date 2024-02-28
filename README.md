@@ -20,5 +20,5 @@ The `python` code used to develop the methodology described in Section 3 is avai
 ### Figures
 
 - The data compiled from the literature is available in the directory ./literature_data.
-- **Code for figures in Section 4.1 - stellar parameters analysis:** &nbsp; [![Jupyter Book Badge](https://jupyterbook.org/badge.svg)](Section4_1_figs.ipynb.ipynb)
-- **Code for figures in Section 4.2 - comparison with the literature:** &nbsp; [![Jupyter Book Badge](https://jupyterbook.org/badge.svg)](Section4_1_figs.ipynb.ipynb)
+- **Code for figures in Section 4.1 - stellar parameters analysis:** &nbsp; [![Jupyter Book Badge](https://jupyterbook.org/badge.svg)](Section4_1_figs.ipynb)
+- **Code for figures in Section 4.2 - comparison with the literature:** &nbsp; [![Jupyter Book Badge](https://jupyterbook.org/badge.svg)](Section4_2_figs.ipynb)
