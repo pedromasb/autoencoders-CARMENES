@@ -1,6 +1,6 @@
 # autoencoders-CARMENES
 
-This repository contains the necessary code to easily reproduce the methodology and figures (for the results section) presented in Mas-Buitrago et al. 2024.
+This repository contains the necessary code to easily reproduce the methodology and figures (for the results section) presented in Mas-Buitrago et al. 2024 &nbsp; [![paper](https://zenodo.org/badge/DOI/10.48550/arXiv.2405.08703.svg)](https://arxiv.org/abs/2405.08703)
 
 #
 
