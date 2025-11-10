@@ -12,6 +12,8 @@ from tensorflow.keras.models import Model
 from tensorflow.keras.layers import Dense, Input
 from tensorflow.keras import regularizers
 from scikeras.wrappers import KerasRegressor
+from sklearn.model_selection import GridSearchCV
+import time
 
 x_train, x_test, y_train, y_test = train_test_split(phf_good_norm, php_good, test_size=0.3, random_state=42)
 
@@ -44,6 +46,8 @@ def build_autoencoder(neurons_in=None,reg_par=None,lr=None):
     ac.compile(loss='mse', optimizer=tf.keras.optimizers.Adam(learning_rate=lr))
     
     return ac
+
+param_grid = [{'neurons_in':np.linspace(2**10,2**11,5),'reg_par':np.linspace(8e-8,1.2e-7,5),'lr':1e-4}]
 
 # Integrates the autoencoder code into a scikit-learn workflow
 autoencoder_base = KerasRegressor(build_autoencoder,verbose=0,neurons_in=param_grid[0]['neurons_in'],reg_par=param_grid[0]['reg_par'],lr=param_grid[0]['lr'])
