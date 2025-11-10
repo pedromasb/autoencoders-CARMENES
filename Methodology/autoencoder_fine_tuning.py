@@ -13,6 +13,7 @@ from tensorflow import keras
 from tensorflow.keras.models import Model
 from tensorflow.keras.layers import Dense, Input
 from tensorflow.keras import regularizers
+from tensorflow.keras import backend as K
 
 def contractive_loss(y_pred, y_true):
     
