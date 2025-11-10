@@ -11,13 +11,13 @@ from sklearn.metrics import mean_squared_error
 from tensorflow import keras
 import tensorflow as tf
 from tensorflow.keras.models import Sequential, Model
-
+import os
 
 def build_cnn(nf1=None,nf2=None,nu=None):
     
-    "
+    """
     Builds a flexible 1D CNN structure
-    "
+    """
     
     model = Sequential()
 
