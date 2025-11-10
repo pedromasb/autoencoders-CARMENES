@@ -2,7 +2,7 @@
 Training of the autoencoders for the best hyperparameters combinations
     - phf_good_norm: numpy array containing the normalised synthetic spectra
     - php_good: numpy array containing the synthetic spectra parameters
-    - params_final: list with a dictionary for each combination of hyperparameters.
+    - params_final: list with a dictionary for each of the best combination of hyperparameters found in the grid search.
 """
 
 import numpy as np
@@ -75,11 +75,9 @@ for i in range(len(params_final)):
     predicted_ph_test = ac.predict(x_test)
     
     mse = mean_squared_error(predicted_ph_test,x_test)
-    
-    f = f.replace('.h5','')
-    
+        
     with open('ac_mse_ph.txt','a') as file_mse:
-        file_mse.write(f'Autoencoder {f} mse in TEST SET: {mse} \n')  
+        file_mse.write(f'Autoencoder ac_{i} mse in TEST SET: {mse} \n')  
     
     encoded_ph = encoder.predict(phf_good_norm)
     np.save(f'encoded_ph_ac{i}.npy', encoded_ph)
