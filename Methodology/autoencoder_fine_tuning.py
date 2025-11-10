@@ -2,7 +2,7 @@
 Fine-tuning, using the spectra observed with CARMENES, of the pre-trained autoencoders
     - phf_good_norm: numpy array containing the normalised synthetic spectra
     - carmf_norm: numpy array containing the normalised CARMENES spectra
-    - params_final: list containing a python dictionary for every grid of parameters to be expored
+    - params_final: list with a dictionary for each of the best combination of hyperparameters found in the grid search
 """
 
 import numpy as np
