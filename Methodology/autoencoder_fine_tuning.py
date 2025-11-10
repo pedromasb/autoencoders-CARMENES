@@ -14,6 +14,8 @@ from tensorflow.keras.models import Model
 from tensorflow.keras.layers import Dense, Input
 from tensorflow.keras import regularizers
 from tensorflow.keras import backend as K
+import os
+from tensorflow.keras.models import load_model
 
 def contractive_loss(y_pred, y_true):
     
@@ -50,26 +52,6 @@ for f in np.sort(os.listdir(path)):
         lr_model = params_final[num]['lr']
         neurons_in_model = params_final[num]['neurons_in']
         reg_par_model = params_final[num]['reg_par']
-
-        input_l = Input(shape=(3501,),name='input_l')
-
-        encoded_l1 = Dense(int(neurons_in_model), activation='relu', name='encoded_1')(input_l) 
-        encoded_l2 = Dense(int(neurons_in_model*3/4), activation='relu', name='encoded_2',activity_regularizer=regularizers.l1(reg_par_model))(encoded_l1)
-        encoded_l3 = Dense(int(neurons_in_model*2/4), activation='relu', name='encoded_3',activity_regularizer=regularizers.l1(reg_par_model))(encoded_l2)
-        encoded_l4 = Dense(int(neurons_in_model*1/4), activation='relu', name='encoded_4',activity_regularizer=regularizers.l1(reg_par_model))(encoded_l3)
-        encoded_l5 = Dense(int(neurons_in_model*1/8), activation='relu', name='encoded_5',activity_regularizer=regularizers.l1(reg_par_model))(encoded_l4)
-
-        bottleneck = Dense(32, activation='relu', name='bottleneck')(encoded_l5)
-
-        decoded_l1 = Dense(int(neurons_in_model*1/8), activation='relu', name='decoded_1',activity_regularizer=regularizers.l1(reg_par_model))(bottleneck)
-        decoded_l2 = Dense(int(neurons_in_model*1/4), activation='relu', name='decoded_2',activity_regularizer=regularizers.l1(reg_par_model))(decoded_l1)
-        decoded_l3 = Dense(int(neurons_in_model*2/4), activation='relu', name='decoded_3',activity_regularizer=regularizers.l1(reg_par_model))(decoded_l2)
-        decoded_l4 = Dense(int(neurons_in_model*3/4), activation='relu', name='decoded_4',activity_regularizer=regularizers.l1(reg_par_model))(decoded_l3)
-        decoded_l5 = Dense(int(neurons_in_model), activation='relu', name='decoded_5',activity_regularizer=regularizers.l1(reg_par_model))(decoded_l4)
-
-        output_l = Dense(3501, activation='sigmoid', name='output_l')(decoded_l5)
-
-        ac = Model(input_l,output_l)
         
         custom_objects = {"contractive_loss": contractive_loss}
         with keras.utils.custom_object_scope(custom_objects):
